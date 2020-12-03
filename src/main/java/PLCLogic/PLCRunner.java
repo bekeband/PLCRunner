@@ -2,12 +2,13 @@ package PLCLogic;
 
 import PLCHardware.*;
 import PLCInterface.InputReads;
+import PLCInterface.ReadXMLFile;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class PLCRunner extends PLCMemory implements InputReads {
+public class PLCRunner extends PLCMemory implements InputReads, ReadXMLFile {
 
     private Stack<Object> calculateStack;
 

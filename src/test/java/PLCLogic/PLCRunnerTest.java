@@ -39,5 +39,7 @@ public class PLCRunnerTest {
 
         System.out.println(plcrunner.tagListToString());
 
+        plcrunner.readFile("C:\\Users\\beke_andras\\IdeaProjects\\PLCRunner\\src\\test\\java\\PLCLogic\\Mezei.gwp");
+
     }
 }
