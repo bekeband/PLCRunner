@@ -1,5 +1,6 @@
 package PLCInterface;
 
+import javax.naming.Name;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
@@ -8,6 +9,10 @@ import org.w3c.dom.*;
 import java.io.File;
 
 public interface ReadXMLFile {
+
+
+    default void printNodeAttributes(Element element) {
+    }
 
     default void printNodeList(NodeList nodeList) {
         for (int count = 0; count < nodeList.getLength(); count++) {
@@ -29,8 +34,7 @@ public interface ReadXMLFile {
     }
 
     default void readFile(String filename) {
-        try
-        {
+        try {
 //creating a constructor of file class and parsing an XML file
             File file = new File(filename);
 //an instance of factory that gives a document builder
@@ -39,30 +43,27 @@ public interface ReadXMLFile {
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(file);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
-
-            if (doc.hasChildNodes()) {
-                printNodeList(doc.getChildNodes());
-            };
-                NodeList nodeList = doc.getElementsByTagName("student");
-// nodeList is not iterable, so we are using for loop
-            for (int itr = 0; itr < nodeList.getLength(); itr++)
-            {
-                Node node = nodeList.item(itr);
-                System.out.println("\nNode Name :" + node.getNodeName());
-                if (node.getNodeType() == Node.ELEMENT_NODE)
-                {
-                    Element eElement = (Element) node;
-                    System.out.println("Student id: "+ eElement.getElementsByTagName("id").item(0).getTextContent());
-                    System.out.println("First Name: "+ eElement.getElementsByTagName("firstname").item(0).getTextContent());
-                    System.out.println("Last Name: "+ eElement.getElementsByTagName("lastname").item(0).getTextContent());
-                    System.out.println("Subject: "+ eElement.getElementsByTagName("subject").item(0).getTextContent());
-                    System.out.println("Marks: "+ eElement.getElementsByTagName("marks").item(0).getTextContent());
-                }
+            Element rootElement = doc.getDocumentElement();
+            System.out.println("Root element: " + rootElement.getNodeName());
+            NamedNodeMap rootAttributes = rootElement.getAttributes();
+            if (rootAttributes != null) {
+                System.out.println(rootAttributes.getLength());
             }
-        }
-        catch (Exception e)
-        {
+
+//            System.out.println("Version: " + rootElement.getAttributeNode("Version").getName());
+//            System.out.println("Version: " + rootElement. getTagName("Version"));
+
+
+//            System.out.println(doc.getDocumentElement().getAttributes());
+
+//            System.out.println(doc.getDocumentElement().getChildNodes());
+
+/*            if (doc.hasChildNodes()) {
+                printNodeList(doc.getChildNodes());
+            };*/
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
