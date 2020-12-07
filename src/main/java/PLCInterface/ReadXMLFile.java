@@ -10,7 +10,6 @@ import java.io.File;
 
 public interface ReadXMLFile {
 
-
     default void printNodeAttributes(Element element) {
     }
 
@@ -33,7 +32,7 @@ public interface ReadXMLFile {
         }
     }
 
-    default void readFile(String filename) {
+    default void readXMLFile(String filename) {
         try {
 //creating a constructor of file class and parsing an XML file
             File file = new File(filename);
@@ -46,9 +45,16 @@ public interface ReadXMLFile {
             Element rootElement = doc.getDocumentElement();
             System.out.println("Root element: " + rootElement.getNodeName());
             NamedNodeMap rootAttributes = rootElement.getAttributes();
-            if (rootAttributes != null) {
-                System.out.println(rootAttributes.getLength());
+
+            for (int i = 0; i < rootAttributes.getLength(); i++) {
+                System.out.println(rootAttributes.item(i));
             }
+
+            if (rootAttributes != null) {
+                System.out.println();
+            }
+
+
 
 //            System.out.println("Version: " + rootElement.getAttributeNode("Version").getName());
 //            System.out.println("Version: " + rootElement. getTagName("Version"));

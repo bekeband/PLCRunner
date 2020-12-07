@@ -39,7 +39,8 @@ public class PLCRunnerTest {
 
         System.out.println(plcrunner.tagListToString());
 
-        plcrunner.readFile("C:\\Users\\beke_andras\\IdeaProjects\\PLCRunner\\src\\test\\java\\PLCLogic\\Mezei.gwp");
+        plcrunner.readXMLFile("C:\\Users\\Beke András\\IdeaProjects\\PLCRunner\\src\\test\\java\\PLCLogic\\TestNull.gwp");
+        plcrunner.readTXTFile("C:\\Users\\Beke András\\IdeaProjects\\PLCRunner\\src\\test\\java\\PLCLogic\\TestCSV.csv");
 
     }
 }
